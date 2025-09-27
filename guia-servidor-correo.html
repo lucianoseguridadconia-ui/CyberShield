@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guía: Montar un servidor de correo seguro</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="blog.html" class="regresar-btn">Regresar al blog</a>
+  <h1>Guía: Montar un servidor de correo seguro en Ubuntu Server</h1>
+  <article>
+    <h2>Introducción</h2>
+    <p>
+      En esta guía aprenderás a instalar y configurar un servidor de correo profesional en Ubuntu Server, usando <strong>Postfix</strong> (MTA), <strong>Dovecot</strong> (IMAP/POP3), y asegurando tu servidor con <strong>SSL/TLS</strong>, <strong>SPF</strong> y <strong>DKIM</strong>. Se incluyen enlaces oficiales y se respeta la autoría de cada recurso recomendado.
+    </p>
+
+    <h2>1. Requisitos previos</h2>
+    <ul>
+      <li>Ubuntu Server 22.04 o superior (preferiblemente LTS)</li>
+      <li>Acceso root o sudo</li>
+      <li>Dominio propio apuntando a la IP del servidor</li>
+      <li>Puertos 25, 143, 587, 993 abiertos en el firewall</li>
+    </ul>
+
+    <h2>2. Instalación de Postfix y Dovecot</h2>
+    <pre>
+sudo apt update
+sudo apt install postfix dovecot-core dovecot-imapd
+    </pre>
+    <p>
+      Durante la instalación de Postfix, selecciona "Internet Site" y escribe tu dominio.
+      <br>
+      <a href="https://ubuntu.com/server/docs/mail-postfix" target="_blank" rel="noopener noreferrer">
+        Guía oficial de Postfix en Ubuntu
+      </a>
+    </p>
+
+    <h2>3. Configuración básica de Postfix</h2>
+    <p>Edita <code>/etc/postfix/main.cf</code> y ajusta los siguientes parámetros:</p>
+    <pre>
+myhostname = mail.tudominio.com
+mydomain = tudominio.com
+myorigin = /etc/mailname
+inet_interfaces = all
+mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+home_mailbox = Maildir/
+    </pre>
+    <p>
+      Más detalles en la <a href="https://www.postfix.org/BASIC_CONFIGURATION_README.html" target="_blank" rel="noopener noreferrer">documentación oficial de Postfix</a>.
+    </p>
+
+    <h2>4. Configuración básica de Dovecot</h2>
+    <p>
+      Edita <code>/etc/dovecot/conf.d/10-mail.conf</code> y asegúrate de tener:
+    </p>
+    <pre>
+mail_location = maildir:~/Maildir
+    </pre>
+    <p>
+      Más información en la <a href="https://doc.dovecot.org/configuration_manual/mail_location/" target="_blank" rel="noopener noreferrer">documentación oficial de Dovecot</a>.
+    </p>
+
+    <h2>5. Habilitar SSL/TLS</h2>
+    <p>
+      Puedes usar <a href="https://letsencrypt.org/" target="_blank" rel="noopener noreferrer">Let's Encrypt</a> para obtener certificados gratuitos:
+    </p>
+    <pre>
+sudo apt install certbot
+sudo certbot certonly --standalone -d mail.tudominio.com
+    </pre>
+    <p>
+      Configura Postfix y Dovecot para usar los certificados generados. Consulta:
+      <ul>
+        <li>
+          <a href="https://ubuntu.com/server/docs/mail-https" target="_blank" rel="noopener noreferrer">Guía oficial de Ubuntu sobre HTTPS/SSL</a>
+        </li>
+        <li>
+          <a href="https://certbot.eff.org/instructions" target="_blank" rel="noopener noreferrer">Certbot: instrucciones oficiales</a>
+        </li>
+      </ul>
+    </p>
+
+    <h2>6. Configurar SPF y DKIM</h2>
+    <p>
+      <strong>SPF:</strong> Añade un registro TXT en la configuración DNS de tu dominio, por ejemplo:
+      <br>
+      <code>v=spf1 mx ~all</code>
+      <br>
+      <a href="https://support.google.com/a/answer/33786?hl=es" target="_blank" rel="noopener noreferrer">Guía de Google sobre SPF</a>
+    </p>
+    <p>
+      <strong>DKIM:</strong> Instala <code>opendkim</code>:
+    </p>
+    <pre>
+sudo apt install opendkim opendkim-tools
+    </pre>
+    <p>
+      Configura OpenDKIM siguiendo la <a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-dkim-with-postfix-on-ubuntu-22-04" target="_blank" rel="noopener noreferrer">guía de DigitalOcean</a> (autor: equipo DigitalOcean, licencia CC BY-NC-SA 4.0).
+    </p>
+
+    <h2>7. Pruebas y verificación</h2>
+    <ul>
+      <li>Usa <a href="https://www.mail-tester.com/" target="_blank" rel="noopener noreferrer">Mail Tester</a> para verificar tu configuración.</li>
+      <li>Verifica los registros SPF y DKIM en <a href="https://mxtoolbox.com/" target="_blank" rel="noopener noreferrer">MXToolbox</a>.</li>
+    </ul>
+
+    <h2>8. Solución de problemas comunes</h2>
+    <ul>
+      <li>
+        <strong>Ver logs de correo:</strong>  
+        <code>sudo tail -f /var/log/mail.log</code>  
+        <a href="https://ubuntu.com/server/docs/mail-troubleshooting" target="_blank" rel="noopener noreferrer">Guía oficial de Ubuntu: Troubleshooting Mail</a>
+      </li>
+      <li>
+        <strong>Verificar puertos abiertos:</strong>  
+        <code>sudo ss -tuln | grep -E '25|143|587|993'</code>
+      </li>
+      <li>
+        <strong>Comprobar configuración DNS:</strong>  
+        Usa <a href="https://mxtoolbox.com/" target="_blank" rel="noopener noreferrer">MXToolbox</a> para revisar registros MX, SPF y DKIM.
+      </li>
+      <li>
+        <strong>Errores de autenticación:</strong>  
+        Revisa la configuración de usuarios y contraseñas en Dovecot y Postfix.
+      </li>
+    </ul>
+
+    <h2>9. Seguridad avanzada</h2>
+    <ul>
+      <li>
+        <strong>Firewall (UFW):</strong>  
+        <pre>
+sudo ufw allow 22/tcp
+sudo ufw allow 25/tcp
+sudo ufw allow 143/tcp
+sudo ufw allow 587/tcp
+sudo ufw allow 993/tcp
+sudo ufw enable
+        </pre>
+        <a href="https://help.ubuntu.com/community/UFW" target="_blank" rel="noopener noreferrer">Guía oficial de UFW</a>
+      </li>
+      <li>
+        <strong>Fail2ban:</strong>  
+        Protege contra ataques de fuerza bruta.
+        <pre>
+sudo apt install fail2ban
+sudo systemctl enable --now fail2ban
+        </pre>
+        <a href="https://www.fail2ban.org/wiki/index.php/Main_Page" target="_blank" rel="noopener noreferrer">Sitio oficial de Fail2ban</a>
+      </li>
+      <li>
+        <strong>Actualizaciones de seguridad:</strong>  
+        <pre>
+sudo apt update && sudo apt upgrade
+        </pre>
+        <a href="https://ubuntu.com/server/docs/security-updates" target="_blank" rel="noopener noreferrer">Actualizaciones de seguridad en Ubuntu</a>
+      </li>
+    </ul>
+
+    <h2>10. Webmail recomendado</h2>
+    <p>
+      Para acceder a tu correo desde el navegador, puedes instalar <a href="https://roundcube.net/" target="_blank" rel="noopener noreferrer">Roundcube Webmail</a>.<br>
+      <a href="https://www.digitalocean.com/community/tutorials/how-to-install-roundcube-webmail-on-ubuntu-22-04" target="_blank" rel="noopener noreferrer">
+        Guía de instalación de Roundcube en Ubuntu (DigitalOcean)
+      </a>
+    </p>
+
+    <h2>11. Backups y restauración</h2>
+    <ul>
+      <li>
+        <strong>Backup de Maildir:</strong>
+        <pre>
+tar czvf backup-maildir-$(date +%F).tar.gz /home/usuario/Maildir
+        </pre>
+      </li>
+      <li>
+        <strong>Backup de configuración:</strong>
+        <pre>
+tar czvf backup-config-$(date +%F).tar.gz /etc/postfix /etc/dovecot /etc/opendkim
+        </pre>
+      </li>
+      <li>
+        <a href="https://help.ubuntu.com/community/BackupYourSystem" target="_blank" rel="noopener noreferrer">Guía oficial de backup en Ubuntu</a>
+      </li>
+    </ul>
+
+    <h2>Referencias y agradecimientos</h2>
+    <ul>
+      <li>
+        <a href="https://ubuntu.com/server/docs/mail-full" target="_blank" rel="noopener noreferrer">
+          Documentación oficial de Ubuntu Server (correo electrónico)
+        </a>
+      </li>
+      <li>
+        <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-postfix-e-mail-server-with-dovecot-on-ubuntu-22-04" target="_blank" rel="noopener noreferrer">
+          How To Set Up a Postfix E-Mail Server with Dovecot on Ubuntu 22.04 (DigitalOcean, CC BY-NC-SA 4.0)
+        </a>
+      </li>
+      <li>
+        <a href="https://letsencrypt.org/" target="_blank" rel="noopener noreferrer">
+          Let's Encrypt (certificados SSL gratuitos)
+        </a>
+      </li>
+    </ul>
+    <p>
+      Esta guía se basa en la documentación oficial y tutoriales de Ubuntu, DigitalOcean y Let's Encrypt. Se recomienda consultar los enlaces originales para información más detallada y actualizaciones.
+    </p>
+  </article>
+</body>
+</html>

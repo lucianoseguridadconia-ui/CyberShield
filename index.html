@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CyberShield – Seguridad Informática</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>CyberShield</h1>
+    <p>Protegiendo tu mundo digital contra la ingeniería social</p>
+    <nav>
+      <ul>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="usuarios.html">Registro</a></li> <!-- Nuevo botón Registro -->
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h2>¿Estás siendo manipulado?</h2>
+    <p>Detectamos, prevenimos y educamos contra las estafas más sofisticadas.</p>
+    <button onclick="mostrarAlerta()">Solicita una auditoría gratuita</button>
+  </section>
+
+  <section id="servicios">
+    <h2>Servicios</h2>
+    <ul>
+      <li>🔍 Auditoría de ingeniería social</li>
+      <li>🧠 Formación en ciberseguridad para empleados</li>
+      <li>🛡️ Simulación de ataques de phishing</li>
+      <li>📊 Análisis de vulnerabilidades humanas</li>
+    </ul>
+  </section>
+
+  <section id="nosotros">
+    <h2>Quiénes somos</h2>
+    <p>Somos expertos en psicología del engaño digital. Nuestro equipo combina experiencia en ciberseguridad, criminología y comunicación para proteger a empresas y personas.</p>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form>
+      <input type="text" placeholder="Tu nombre" required />
+      <input type="email" placeholder="Tu correo" required />
+      <textarea placeholder="Tu mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 CyberShield. Todos los derechos reservados.</p>
+    <p>
+      <a href="privacidad.html" target="_blank" rel="noopener noreferrer">Política de Privacidad</a> |
+      <a href="terminos.html" target="_blank" rel="noopener noreferrer">Términos y Condiciones</a> |
+      <a href="cookies.html" target="_blank" rel="noopener noreferrer">Política de Cookies</a>
+    </p>
+  </footer>
+
+  <div id="cookie-banner" style="display: none;">
+    <p>
+      Este sitio utiliza cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestra 
+      <a href="cookies.html" target="_blank" rel="noopener noreferrer">política de cookies</a>.
+    </p>
+    <button id="aceptar-cookies">Aceptar</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

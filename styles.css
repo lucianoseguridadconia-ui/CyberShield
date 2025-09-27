@@ -1,0 +1,284 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+header {
+  background-color: #0a2e4f;
+  color: white;
+  padding: 2rem;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#hero {
+  background-color: #e0f7fa;
+  padding: 3rem;
+  text-align: center;
+}
+
+#hero button {
+  background-color: #00796b;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+section {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input, textarea {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button[type="submit"] {
+  background-color: #0a2e4f;
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+footer {
+  background-color: #0a2e4f;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+#cookie-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #0a2e4f;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  z-index: 999;
+}
+
+#cookie-banner button {
+  background-color: #00796b;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+footer a {
+  color: white;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+footer a:hover {
+  color: #e0f7fa;
+  text-decoration: none;
+}
+
+/* General */
+body {
+  background: #f6f8fa;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #222;
+}
+
+/* Encabezados */
+h1, h2, h3 {
+  color: #1a237e;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.2em;
+  margin-top: 40px;
+}
+
+h2 {
+  font-size: 1.4em;
+  border-left: 4px solid #3949ab;
+  padding-left: 10px;
+  background: #e8eaf6;
+}
+
+h3 {
+  font-size: 1.1em;
+  color: #3949ab;
+}
+
+/* Botones y enlaces */
+a.regresar-btn, .leer-mas-btn {
+  display: inline-block;
+  margin: 20px 0 20px 0;
+  background: #1a237e;
+  color: #fff !important;
+  padding: 10px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+a.regresar-btn:hover, .leer-mas-btn:hover {
+  background: #3949ab;
+}
+
+a {
+  color: #3949ab;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #1a237e;
+}
+
+/* Blog List */
+.blog-list {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.blog-list article {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.08);
+  padding: 30px 25px;
+  margin-bottom: 30px;
+  transition: box-shadow 0.2s;
+}
+
+.blog-list article:hover {
+  box-shadow: 0 4px 16px rgba(60, 60, 120, 0.15);
+}
+
+/* Artículo individual */
+article {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.08);
+  padding: 30px 25px;
+  line-height: 1.7;
+}
+
+article ul, article ol {
+  margin-left: 30px;
+  margin-bottom: 1em;
+}
+
+article pre {
+  background: #232946;
+  color: #fff;
+  padding: 14px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+
+article code {
+  background: #e8eaf6;
+  color: #1a237e;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.98em;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .blog-list, article {
+    max-width: 98vw;
+    padding: 15px 5vw;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+}
+
+/* Formularios */
+form label {
+  display: block;
+  margin-top: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+form input, form textarea {
+  margin-top: 6px;
+  padding: 10px;
+  border: 1px solid #bdbdbd;
+  border-radius: 6px;
+  font-size: 1em;
+  background: #f9f9fb;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+form input:focus, form textarea:focus {
+  border-color: #1a237e;
+  outline: none;
+}
+
+form button[type="submit"] {
+  background: #1a237e;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.2s;
+}
+
+form button[type="submit"]:hover {
+  background: #3949ab;
+}
+
+/* Mensaje de confirmación */
+#mensaje-confirmacion {
+  margin-top: 20px;
+  color: green;
+  font-weight: bold;
+  text-align: center;
+}
