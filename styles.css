@@ -1,210 +1,203 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f6f8;
-  color: #333;
+/* ================================
+   Variables de diseño (facultativo)
+=================================== */
+:root{
+  --bg: #f6f8fa;
+  --text: #222;
+  --text-soft: #333;
+  --brand-900: #0a2e4f;
+  --brand-700: #1a237e;
+  --brand-600: #3949ab;
+  --accent-700: #00796b;
+  --hero-bg: #e0f7fa;
+  --card: #fff;
+  --muted-border: #bdbdbd;
+  --muted-input: #f9f9fb;
+  --shadow-1: 0 2px 8px rgba(60,60,120,.08);
+  --shadow-2: 0 4px 16px rgba(60,60,120,.15);
+  --radius: 10px;
+  --transition: 0.2s ease;
 }
 
-header {
-  background-color: #0a2e4f;
-  color: white;
+/* ================================
+   Reglas base
+=================================== */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body{
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ================================
+   Encabezado / navegación
+=================================== */
+header{
+  background: var(--brand-900);
+  color: #fff;
   padding: 2rem;
   text-align: center;
 }
+header h1{
+  margin: 0;
+  color: #ffffff !important;
+}
 
-nav ul {
+nav ul{
   list-style: none;
   padding: 0;
+  margin: 0;
   display: flex;
   justify-content: center;
   gap: 2rem;
 }
-
-nav a {
+nav a{
   color: #fff;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+}
+nav a:hover,
+nav a:focus{
+  text-decoration: underline;
+  outline: none;
 }
 
-#hero {
-  background-color: #e0f7fa;
+/* ================================
+   Hero
+=================================== */
+#hero{
+  background: var(--hero-bg);
   padding: 3rem;
   text-align: center;
 }
-
-#hero button {
-  background-color: #00796b;
-  color: white;
+#hero button{
+  background: var(--accent-700);
+  color: #fff;
   border: none;
   padding: 1rem 2rem;
   font-size: 1rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 6px;
+  transition: filter var(--transition), transform var(--transition);
+}
+#hero button:hover,
+#hero button:focus{
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 3px rgba(0,121,107,.25);
 }
 
-section {
+/* ================================
+   Secciones
+=================================== */
+section{
   padding: 2rem;
   max-width: 800px;
-  margin: auto;
+  margin: 0 auto;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-input, textarea {
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button[type="submit"] {
-  background-color: #0a2e4f;
-  color: white;
-  border: none;
-  padding: 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-footer {
-  background-color: #0a2e4f;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
-
-#cookie-banner {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #0a2e4f;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-  z-index: 999;
-}
-
-#cookie-banner button {
-  background-color: #00796b;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  margin-left: 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-}
-footer a {
-  color: white;
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-footer a:hover {
-  color: #e0f7fa;
-  text-decoration: none;
-}
-
-/* General */
-body {
-  background: #f6f8fa;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #222;
-}
-
-/* Encabezados */
-h1, h2, h3 {
-  color: #1a237e;
+/* ================================
+   Tipografía
+=================================== */
+h1, h2, h3{
+  color: var(--brand-700);
   margin-top: 1.5em;
-  margin-bottom: 0.5em;
+  margin-bottom: .5em;
 }
-
-h1 {
+h1{
   text-align: center;
   font-size: 2.2em;
   margin-top: 40px;
 }
-
-h2 {
+h2{
   font-size: 1.4em;
-  border-left: 4px solid #3949ab;
+  border-left: 4px solid var(--brand-600);
   padding-left: 10px;
   background: #e8eaf6;
 }
-
-h3 {
+h3{
   font-size: 1.1em;
-  color: #3949ab;
+  color: var(--brand-600);
 }
 
-/* Botones y enlaces */
-a.regresar-btn, .leer-mas-btn {
+a{
+  color: var(--brand-600);
+  text-decoration: underline;
+}
+a:hover,
+a:focus{
+  color: var(--brand-700);
+  text-decoration: none;
+  outline: none;
+}
+
+/* Botones/enlaces destacados */
+a.regresar-btn,
+.leer-mas-btn{
   display: inline-block;
-  margin: 20px 0 20px 0;
-  background: #1a237e;
+  margin: 20px 0;
+  background: var(--brand-700);
   color: #fff !important;
   padding: 10px 18px;
   border-radius: 6px;
   text-decoration: none;
-  font-weight: bold;
-  transition: background 0.2s;
+  font-weight: 700;
+  transition: background var(--transition), transform var(--transition);
+}
+a.regresar-btn:hover,
+.leer-mas-btn:hover,
+a.regresar-btn:focus,
+.leer-mas-btn:focus{
+  background: var(--brand-600);
+  transform: translateY(-1px);
+  outline: none;
 }
 
-a.regresar-btn:hover, .leer-mas-btn:hover {
-  background: #3949ab;
-}
-
-a {
-  color: #3949ab;
-  text-decoration: underline;
-}
-
-a:hover {
-  color: #1a237e;
-}
-
-/* Blog List */
-.blog-list {
+/* ================================
+   Blog listado y artículo
+=================================== */
+.blog-list{
   max-width: 800px;
   margin: 40px auto;
   padding: 0 20px;
 }
-
-.blog-list article {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.08);
+.blog-list article{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
   padding: 30px 25px;
   margin-bottom: 30px;
-  transition: box-shadow 0.2s;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.blog-list article:hover{
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
 }
 
-.blog-list article:hover {
-  box-shadow: 0 4px 16px rgba(60, 60, 120, 0.15);
-}
-
-/* Artículo individual */
-article {
+article{
   max-width: 800px;
   margin: 40px auto;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.08);
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-1);
   padding: 30px 25px;
   line-height: 1.7;
 }
-
-article ul, article ol {
+article ul,
+article ol{
   margin-left: 30px;
   margin-bottom: 1em;
 }
-
-article pre {
+article pre{
   background: #232946;
   color: #fff;
   padding: 14px;
@@ -213,127 +206,198 @@ article pre {
   font-size: 1em;
   margin-bottom: 1em;
 }
-
-article code {
+article code{
   background: #e8eaf6;
-  color: #1a237e;
+  color: var(--brand-700);
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: 0.98em;
+  font-size: .98em;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .blog-list, article {
-    max-width: 98vw;
-    padding: 15px 5vw;
-  }
-  h1 {
-    font-size: 1.5em;
-  }
+/* ================================
+   Formularios (global)
+=================================== */
+form{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
-
-/* Formularios */
-form label {
+form label{
   display: block;
-  margin-top: 18px;
-  font-weight: 500;
-  color: #333;
-}
-
-form input, form textarea {
   margin-top: 6px;
-  padding: 10px;
-  border: 1px solid #bdbdbd;
+  font-weight: 500;
+  color: var(--text-soft);
+}
+form input,
+form textarea{
+  padding: 12px;
+  border: 1px solid var(--muted-border);
   border-radius: 6px;
-  font-size: 1em;
-  background: #f9f9fb;
+  font-size: 1rem;
+  background: var(--muted-input);
   width: 100%;
-  box-sizing: border-box;
-  transition: border-color 0.2s;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
-
-form input:focus, form textarea:focus {
-  border-color: #1a237e;
+form input:focus,
+form textarea:focus{
+  border-color: var(--brand-700);
   outline: none;
+  box-shadow: 0 0 0 3px rgba(26,35,126,.18);
 }
-
-form button[type="submit"] {
-  background: #1a237e;
+form button[type="submit"]{
+  background: var(--brand-900);
   color: #fff;
   border: none;
   padding: 12px;
   border-radius: 6px;
-  font-size: 1em;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  margin-top: 20px;
-  transition: background 0.2s;
+  transition: background var(--transition), transform var(--transition);
+}
+form button[type="submit"]:hover,
+form button[type="submit"]:focus{
+  background: var(--brand-700);
+  transform: translateY(-1px);
+  outline: none;
 }
 
-form button[type="submit"]:hover {
-  background: #3949ab;
+/* Utilidad para label de consentimiento con peso normal */
+.consent-label{
+  font-weight: 400;
 }
 
-/* Centrado y estilo para el formulario de registro de usuarios */
-#form-registro {
+/* ================================
+   Formulario de registro (scoped)
+=================================== */
+#form-registro{
   max-width: 400px;
-  margin: 40px auto 0 auto;
-  background: #fff;
+  margin: 40px auto 0;
+  background: var(--card);
   padding: 30px 25px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(60, 60, 120, 0.10);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(60,60,120,.10);
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
-
-#form-registro label {
+#form-registro label{
   display: flex;
   flex-direction: column;
   font-weight: 500;
-  color: #333;
+  color: var(--text-soft);
 }
-
 #form-registro input,
-#form-registro textarea {
+#form-registro textarea{
   margin-top: 6px;
-  padding: 10px;
-  border: 1px solid #bdbdbd;
-  border-radius: 6px;
-  font-size: 1em;
-  background: #f9f9fb;
-  transition: border-color 0.2s;
 }
-
 #form-registro input:focus,
-#form-registro textarea:focus {
-  border-color: #1a237e;
+#form-registro textarea:focus{
+  border-color: var(--brand-700);
   outline: none;
+  box-shadow: 0 0 0 3px rgba(26,35,126,.18);
 }
-
-#form-registro button[type="submit"] {
-  background: #1a237e;
+#form-registro button[type="submit"]{
+  background: var(--brand-700);
   color: #fff;
   border: none;
   padding: 12px;
   border-radius: 6px;
-  font-size: 1em;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background var(--transition), transform var(--transition);
   margin-top: 10px;
 }
-
-#form-registro button[type="submit"]:hover {
-  background: #3949ab;
+#form-registro button[type="submit"]:hover,
+#form-registro button[type="submit"]:focus{
+  background: var(--brand-600);
+  transform: translateY(-1px);
+  outline: none;
 }
 
-/* Mensaje de confirmación centrado */
-#mensaje-confirmacion {
-  margin: 20px auto 0 auto;
-  color: green;
-  font-weight: bold;
+/* Mensaje de confirmación */
+#mensaje-confirmacion{
+  margin: 20px auto 0;
+  color: #2e7d32; /* verde accesible */
+  font-weight: 700;
   text-align: center;
   max-width: 400px;
+}
+
+/* ================================
+   Pie y enlaces del pie
+=================================== */
+footer{
+  background: var(--brand-900);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+footer a{
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+}
+footer a:hover,
+footer a:focus{
+  color: var(--hero-bg);
+  text-decoration: none;
+  outline: none;
+}
+
+/* ================================
+   Banner de cookies
+=================================== */
+#cookie-banner{
+  position: fixed;
+  inset: auto 0 0 0; /* full-width bottom */
+  background: var(--brand-900);
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  z-index: 999;
+  display: flex;
+  gap: .75rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#cookie-banner button{
+  background: var(--accent-700);
+  color: #fff;
+  border: none;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: filter var(--transition), transform var(--transition);
+}
+#cookie-banner button:hover,
+#cookie-banner button:focus{
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* ================================
+   Responsivo
+=================================== */
+@media (max-width: 900px){
+  .blog-list, article{
+    max-width: 98vw;
+    padding: 15px 5vw;
+  }
+  h1{ font-size: 1.5em; }
+}
+
+/* ================================
+   Accesibilidad / prefers-reduced-motion
+=================================== */
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
