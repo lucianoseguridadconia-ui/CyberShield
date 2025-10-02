@@ -3,7 +3,8 @@
 
 // Configuración de la API
 const API_BASE_URL = 'http://localhost:3000/api'; // Cambiar en producción
-const API_PROD_URL = 'https://cybershield-backend.railway.app/api'; // Cambiar por tu URL real
+
+const API_PROD_URL = 'https://cybershield-production-f6d0.up.railway.app/api';
 
 // Detectar si estamos en desarrollo o producción
 const API_URL = window.location.hostname === 'localhost' ? API_BASE_URL : API_PROD_URL;
